@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Site pessoal de Antonio Pasolini Junior — Engenharia de Software, inteligência artificial, automação e memória digital." name="description"/>
+<title>Antonio Pasolini Junior</title>
+<script>document.documentElement.classList.add("js");</script>
+<style>
+    :root {
+      --bg: #090909;
+      --surface: #111111;
+      --surface-soft: #161616;
+      --text: #f2f2f2;
+      --muted: #a8a8a8;
+      --line: #303030;
+      --line-strong: #5b5b5b;
+      --accent: #d8d8d8;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.045), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* ── Layout principal: sidebar direita + conteúdo centralizado ── */
+    .layout-wrapper {
+      display: flex;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+      min-height: 100vh;
+      justify-content: center;
+    }
+
+    .content-area {
+      flex: 1;
+      min-width: 0;
+      max-width: 800px;
+      margin: 0;
+    }
+
+    .page-shell {
+      width: 100%;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 72px 0 56px;
+    }
+
+    .identity {
+      width: min(100%, 780px);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .portrait-wrap {
+      width: clamp(220px, 29vw, 360px);
+      aspect-ratio: 1 / 1.2;
+      margin: 0 auto 32px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .portrait-wrap img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 20%;
+      filter: grayscale(1) contrast(1.03);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.35rem, 7vw, 5.8rem);
+      font-weight: 620;
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-copy {
+      width: min(100%, 680px);
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
+
+    .hero-copy strong {
+      color: var(--text);
+      font-weight: 520;
+    }
+
+    .scroll-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .scroll-note::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--line-strong);
+    }
+
+    /* ── Sidebar do grafo ── */
+    .sidebar-right {
+      width: 340px;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .sidebar-spacer {
+      flex: 1;
+      min-height: 40px;
+    }
+
+    /* ── Seções ── */
+    .section {
+      padding: 96px 0;
+      scroll-margin-top: 30px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(160px, 0.5fr) minmax(0, 1.5fr);
+      column-gap: clamp(40px, 6vw, 72px);
+      row-gap: 28px;
+      align-items: start;
+    }
+
+    .section-kicker {
+      margin: 0;
+      color: #808080;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .section h2 {
+      margin: 8px 0 0;
+      font-size: clamp(1.6rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 560;
+    }
+
+    /* Underline the section header across both grid columns (used by section-grid headers) */
+    .section-grid > header {
+      grid-column: 1 / -1;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 0;
+    }
+
+    /* For sections that don't use a header element (e.g., Contato), underline the first .fade-up inside .page-shell */
+    .section > .page-shell > :not(header).fade-up {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 0;
+    }
+
+
+    .section-copy {
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+    }
+
+    /* Make section descriptions for Trajetória, Carreira, Projetos and Contato span the full center area */
+    #trajetoria .section-copy,
+    #carreira .section-copy,
+    #projetos .section-copy,
+    #contato .section-copy {
+      grid-column: 1 / -1;
+    }
+
+    .section-copy p {
+      margin: 0 0 20px;
+    }
+
+    .section-copy strong {
+      color: var(--text);
+      font-weight: 520;
+    }
+
+    .career-list,
+    .project-list {
+      margin-top: 20px;
+      margin-left: clamp(18px, 3vw, 36px);
+      border-top: 1px solid var(--line);
+    }
+
+    .career-item,
+    .project-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 28px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 30px;
+    }
+
+    .career-item span,
+    .project-item span {
+      color: #777;
+      display: block;
+      padding-left: 12px;
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .career-item p,
+    .project-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 34px;
+    }
+
+    .project-tags {
+      margin-left: clamp(18px, 3vw, 36px);
+    }
+
+    .tag {
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #bdbdbd;
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .tag-interactive {
+      cursor: pointer;
+      transition: color 0.2s ease, background 0.2s ease,
+        border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .tag-interactive:hover,
+    .tag-interactive:focus-visible,
+    .tag-interactive[aria-expanded="true"] {
+      color: var(--bg);
+      background: var(--text);
+      border-color: var(--text);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .tag-popover {
+      position: fixed;
+      z-index: 1000;
+      width: min(360px, calc(100vw - 32px));
+      padding: 18px 20px;
+      border: 1px solid var(--line-strong);
+      border-radius: 16px;
+      background: var(--surface-soft);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .tag-popover[hidden] {
+      display: none;
+    }
+
+    .tag-popover strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--text);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .tag-popover p {
+      margin: 0;
+    }
+
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 24px 0 0;
+    }
+
+    .contact-card p {
+      max-width: 610px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 12px;
+    }
+
+    .contact-link {
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #d4d4d4;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .contact-link:hover,
+    .contact-link:focus-visible {
+      background: var(--text);
+      border-color: var(--text);
+      color: var(--bg);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      padding: 34px 0 42px;
+      color: #666;
+      font-size: 0.78rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .fade-up {
+      opacity: 1;
+      transform: none;
+    }
+
+    .js .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .js .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .layout-wrapper {
+        flex-direction: column;
+        padding: 0 20px;
+      }
+
+      .sidebar-right {
+        width: 100%;
+        order: -1;
+        padding-left: 0;
+        align-items: center;
+      }
+
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .section-grid {
+        grid-template-columns: 1fr;
+        row-gap: 24px;
+        column-gap: 0;
+      }
+
+      .career-item,
+      .project-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .contact-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .contact-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page-shell {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .hero {
+        min-height: auto;
+        padding-bottom: 90px;
+      }
+
+      .portrait-wrap {
+        width: min(76vw, 300px);
+      }
+
+      h1 {
+        font-size: clamp(2.3rem, 15vw, 4.1rem);
+      }
+
+      .section {
+        padding: 76px 0;
+      }
+
+      .career-list,
+      .project-list,
+      .project-tags {
+        margin-left: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Tema claro/escuro ── */
+    body[data-theme="light"] {
+      --bg: #f4f2ed;
+      --surface: #ffffff;
+      --surface-soft: #ebe8e1;
+      --text: #171717;
+      --muted: #64615c;
+      --line: #d4d0c8;
+      --line-strong: #aaa59b;
+      --accent: #272727;
+      background:
+        radial-gradient(circle at top right, rgba(0, 0, 0, 0.045), transparent 35%),
+        var(--bg);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 1200;
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.16);
+      backdrop-filter: blur(14px);
+    }
+
+    .theme-toggle button {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: color .2s ease, background .2s ease, transform .2s ease;
+    }
+
+    .theme-toggle button:hover,
+    .theme-toggle button:focus-visible {
+      color: var(--text);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .theme-toggle button[aria-pressed="true"] {
+      color: var(--bg);
+      background: var(--text);
+    }
+
+    .theme-toggle svg,
+    .graph-tool svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── Grafo interativo compacto ── */
+    .graph-panel {
+      position: sticky;
+      top: 26px;
+      width: 320px;
+      margin-top: 26px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .22);
+      backdrop-filter: blur(16px);
+      transition: width .25s ease, border-radius .25s ease, box-shadow .25s ease;
+    }
+
+    .graph-panel.is-fullscreen {
+      position: fixed;
+      inset: 18px;
+      z-index: 1400;
+      width: auto;
+      height: auto;
+      margin: 0;
+      border-radius: 22px;
+      box-shadow: 0 30px 100px rgba(0,0,0,.55);
+    }
+
+    .graph-panel-header {
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 12px 0 17px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .graph-panel-title {
+      min-width: 0;
+    }
+
+    .graph-panel-title strong {
+      display: block;
+      color: var(--text);
+      font-size: .74rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .graph-panel-title span {
+      display: block;
+      color: var(--muted);
+      font-size: .66rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .graph-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .graph-tool {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 9px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: color .2s ease, background .2s ease;
+    }
+
+    .graph-tool:hover,
+    .graph-tool:focus-visible {
+      color: var(--text);
+      background: color-mix(in srgb, var(--text) 8%, transparent);
+      outline: none;
+    }
+
+    .graph-stage {
+      position: relative;
+      height: 275px;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      background:
+        radial-gradient(circle at 50% 48%, color-mix(in srgb, var(--text) 5%, transparent), transparent 45%);
+    }
+
+    .graph-stage:active {
+      cursor: grabbing;
+    }
+
+    .graph-panel.is-fullscreen .graph-stage {
+      height: calc(100% - 52px);
+    }
+
+    .graph-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .graph-edge {
+      stroke: var(--line-strong);
+      stroke-width: 1;
+      opacity: .55;
+      vector-effect: non-scaling-stroke;
+      transition: opacity .25s ease, stroke .25s ease;
+    }
+
+    .graph-edge.is-context {
+      stroke: var(--text);
+      opacity: .82;
+    }
+
+    .graph-node {
+      cursor: pointer;
+      outline: none;
+    }
+
+    .graph-node circle {
+      fill: var(--surface);
+      stroke: var(--line-strong);
+      stroke-width: 1.3;
+      vector-effect: non-scaling-stroke;
+      transition: fill .2s ease, stroke .2s ease, r .2s ease;
+    }
+
+    .graph-node text {
+      fill: var(--muted);
+      font-size: 10px;
+      letter-spacing: .035em;
+      paint-order: stroke;
+      stroke: var(--surface);
+      stroke-width: 3px;
+      stroke-linejoin: round;
+      transition: fill .2s ease, font-size .2s ease;
+    }
+
+    .graph-node.is-root circle {
+      fill: var(--text);
+      stroke: var(--text);
+    }
+
+    .graph-node.is-root text {
+      fill: var(--text);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .graph-node.is-parent circle {
+      r: 5.3px;
+    }
+
+    .graph-node.is-active circle,
+    .graph-node:hover circle,
+    .graph-node:focus-visible circle {
+      fill: var(--text);
+      stroke: var(--text);
+      filter: drop-shadow(0 0 6px color-mix(in srgb, var(--text) 60%, transparent));
+    }
+
+    .graph-node.is-active text,
+    .graph-node:hover text,
+    .graph-node:focus-visible text {
+      fill: var(--text);
+      font-size: 11px;
+    }
+
+    .graph-node.is-dimmed {
+      opacity: .25;
+    }
+
+    .graph-hint {
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      padding: 4px 7px;
+      border-radius: 7px;
+      color: var(--muted);
+      background: color-mix(in srgb, var(--surface) 84%, transparent);
+      font-size: .61rem;
+      pointer-events: none;
+    }
+
+    .graph-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1350;
+      background: rgba(0,0,0,.64);
+      backdrop-filter: blur(5px);
+    }
+
+    .graph-backdrop[hidden] {
+      display: none;
+    }
+
+    body.graph-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar-right {
+        width: 100%;
+      }
+
+      .graph-panel {
+        position: relative;
+        top: auto;
+        width: min(100%, 520px);
+        margin: 66px auto 10px;
+      }
+
+      .graph-stage {
+        height: 300px;
+      }
+
+      .graph-panel.is-fullscreen {
+        position: fixed;
+        inset: 10px;
+        width: auto;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .theme-toggle {
+        top: 10px;
+        left: 10px;
+      }
+
+      .graph-panel {
+        border-radius: 14px;
+      }
+
+      .graph-stage {
+        height: 270px;
+      }
+
+      .graph-hint {
+        display: none;
+      }
+    }
+
+  
+
+    /* ── Controles de interface: tema + idioma ── */
+    .interface-controls {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .interface-controls .theme-toggle {
+      position: static;
+      top: auto;
+      left: auto;
+    }
+
+    .language-toggle {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.16);
+      backdrop-filter: blur(14px);
+    }
+
+    .language-toggle button {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1.05rem;
+      line-height: 1;
+      filter: grayscale(.7) opacity(.72);
+      transition: background .2s ease, filter .2s ease, transform .2s ease;
+    }
+
+    .language-toggle button:hover,
+    .language-toggle button:focus-visible {
+      filter: grayscale(0) opacity(1);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .language-toggle button[aria-pressed="true"] {
+      background: color-mix(in srgb, var(--text) 13%, transparent);
+      filter: grayscale(0) opacity(1);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 14%, transparent);
+    }
+
+    @media (max-width: 560px) {
+      .interface-controls {
+        top: 10px;
+        left: 10px;
+        gap: 6px;
+      }
+
+      .interface-controls .theme-toggle {
+        top: auto;
+        left: auto;
+      }
+    }
+</style>
+</head>
+<body>
+<div class="interface-controls"><div aria-label="Selecionar tema" class="theme-toggle">
+<button aria-label="Usar tema escuro" aria-pressed="true" data-theme-choice="dark" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M21 12.8A8.4 8.4 0 1 1 11.2 3 6.6 6.6 0 0 0 21 12.8Z"></path></svg>
+</button>
+<button aria-label="Usar tema claro" aria-pressed="false" data-theme-choice="light" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
+</button>
+</div><div aria-label="Selecionar idioma" class="language-toggle"><button aria-label="Português brasileiro" aria-pressed="true" data-language-choice="pt-BR" title="Português brasileiro" type="button"><span aria-hidden="true">🇧🇷</span></button><button aria-label="Italiano" aria-pressed="false" data-language-choice="it" title="Italiano" type="button"><span aria-hidden="true">🇮🇹</span></button></div></div>
+<div class="graph-backdrop" hidden=""></div>
+<div class="layout-wrapper">
+<div class="content-area">
+<main>
+<section class="hero" id="inicio">
+<div class="page-shell">
+<div class="identity fade-up">
+<div class="portrait-wrap">
+<img alt="Retrato de Antonio Pasolini Junior em preto e branco" height="432" src="http://predador.ddns.net/perfil-junior-bw.png" width="360"/>
+</div>
+<p class="eyebrow">Engenharia · Sistemas · Inteligência Artificial</p>
+<h1>Antonio<br/>Pasolini Junior</h1>
+<p class="hero-copy">
+            Ítalo-brasileiro, servidor público e estudante de Engenharia de Software.
+            Exploro a relação entre <strong>tecnologia, memória digital,
+            automação e conhecimento organizado</strong> — construindo sistemas que fazem sentido, crescem com o tempo e liberam energia pro que realmente importa.
+          </p>
+<a class="scroll-note" href="#trajetoria">conheça a trajetória</a>
+</div>
+</div>
+</section>
+<section class="section" id="trajetoria">
+<div class="page-shell section-grid">
+<header class="fade-up">
+<p class="section-kicker">01</p>
+<h2>Trajetória</h2>
+</header>
+<div class="section-copy fade-up">
+<p>
+            Em contato com o universo dos computadores desde a infância, minha trajetória é marcada pela interseção entre o serviço público e a tecnologia. Há mais de uma década atuando na administração pública da capital do Espírito Santo, desenvolvi um olhar prático para <strong>processos, pessoas e sistemas</strong> — e foi essa experiência que me levou de volta à sala de aula.
+          </p>
+<p>
+            Atualmente curso Engenharia de Software, onde encontro as ferramentas para estruturar o que antes era apenas intuição: <strong>automação de fluxos, organização do conhecimento, arquitetura de sistemas e inteligência artificial aplicada</strong>.
+          </p>
+<p>
+            Meu método de trabalho combina <strong>observação cuidadosa, documentação disciplinada e experimentação responsável</strong>. Acredito que sistemas bem construídos não apenas resolvem problemas — eles trazem ordem, legibilidade e consistência ao que antes era fragmentado.
+          </p>
+<p>
+            Mais do que acumular ferramentas, busco criar <strong>estruturas que façam sentido, cresçam com o tempo e sirvam a propósitos reais</strong>.
+          </p>
+</div>
+</div>
+</section>
+<section class="section" id="carreira">
+<div class="page-shell section-grid">
+<header class="fade-up">
+<p class="section-kicker">02</p>
+<h2>Carreira</h2>
+</header>
+<div class="section-copy fade-up">
+<p>
+            Minha atuação reúne experiência no serviço público, formação em
+            Engenharia de Software e pesquisa aplicada em sistemas inteligentes.
+          </p>
+<div class="career-list">
+<div class="career-item" id="atuacao">
+<span>Atuação</span>
+<p>
+                Servidor público há mais de 10 anos na administração da capital do Espírito Santo, atuando em unidade de saúde. Meu trabalho envolve coordenação de equipes, processos de RH, organização de plantões, demandas de manutenção e melhorias operacionais do dia a dia. É um ambiente de alta complexidade humana e administrativa — e foi exatamente essa vivência que me ensinou a olhar para <strong>processos, pessoas e sistemas</strong> de forma prática. Em paralelo, desenvolvo automações e ferramentas que tornam o trabalho mais ágil, confiável e menos dependente de esforço manual repetitivo.
+              </p>
+</div>
+<div class="career-item" id="especialidade">
+<span>Especialidade</span>
+<p>
+                A formação em Engenharia de Software veio como desdobramento natural dessa trajetória: dar método e estrutura ao que antes era resolvido com improviso e experiência acumulada. Hoje aplico <strong>arquitetura de sistemas, inteligência artificial e automação de processos</strong> para criar soluções que realmente funcionam no cotidiano. Minha especialidade está em <strong>integrar ferramentas, organizar conhecimento e construir fluxos inteligentes</strong> — seja com agentes de IA, scripts de automação ou sistemas de memória digital. O que me interessa não é a ferramenta em si, mas o sistema que ela ajuda a sustentar.
+              </p>
+</div>
+<div class="career-item" id="abordagem">
+<span>Abordagem</span>
+<p>
+                O fio condutor é simples e constante: <strong>observar com atenção, documentar com disciplina, experimentar com responsabilidade e evoluir com consistência</strong>. Prefiro soluções que cresçam com o tempo, que sejam legíveis e que liberem energia em vez de consumi-la. Trabalho sempre entre o prático e o estruturado — do chão da operação até a arquitetura do sistema.
+              </p>
+</div>
+</div>
+<div aria-label="Áreas de interesse" class="tag-cloud">
+<button aria-controls="eng-software-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="eng-software-popover" type="button">Engenharia de Software</button>
+<button aria-controls="ia-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="ia-popover" type="button">Inteligência Artificial</button>
+<button aria-controls="python-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="python-popover" type="button">Python</button>
+<button aria-controls="c-cpp-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="c-cpp-popover" type="button">C/C++</button>
+<button aria-controls="memoria-digital-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="memoria-digital-popover" type="button">Memória Digital</button>
+<button aria-controls="agentes-ia-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="agentes-ia-popover" type="button">Agentes de IA</button>
+<button aria-controls="arquitetura-sistemas-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="arquitetura-sistemas-popover" type="button">Arquitetura de Sistemas</button>
+<button aria-controls="knowledge-graphs-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="knowledge-graphs-popover" type="button">Knowledge Graphs</button>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="projetos">
+<div class="page-shell section-grid">
+<header class="fade-up">
+<p class="section-kicker">03</p>
+<h2>Projetos</h2>
+</header>
+<div class="section-copy fade-up">
+<p>
+            Alguns projetos começam como ferramentas. Outros começam como perguntas. Os mais interessantes, para mim, acabam se tornando os dois.
+          </p>
+<div class="project-list">
+<div class="project-item" id="memory-wiki">
+<span>Memory Wiki</span>
+<p>
+                Um ecossistema pessoal de <strong>memória estruturada</strong> que organiza conhecimento, conceitos e relações entre entidades. Alimentado por curadoria contínua (humana + IA), transforma registros dispersos em uma base de conhecimento viva, navegável e em constante evolução.
+              </p>
+</div>
+<div class="project-item" id="projeto-automacao">
+<span>Automação RBE</span>
+<p>
+                Sistema de automação para a fila de regulação da saúde pública. Integra <strong>navegação web, extração de dados, geração de documentos e envio organizado de informações</strong> — tudo executado por agentes autônomos com supervisão mínima. Nasceu de uma dor real do serviço e hoje executa em minutos o que antes consumia horas de trabalho manual.
+              </p>
+</div>
+<div class="project-item" id="stack-pessoal">
+<span>Stack &amp; Agentes</span>
+<p>
+                Infraestrutura pessoal construída e mantida em casa. <strong>OpenClaw</strong> como orquestrador de agentes, modelos locais via <strong>Ollama</strong>, geração de imagem com <strong>ComfyUI</strong> e indexação semântica. Tudo rodando em <strong>WSL2 (Debian)</strong> com GPU dedicada, complementado por um servidor DietPi que hospeda o agente <strong>Hermes</strong> e serviços de mídia com <strong>Jellyfin</strong>.
+              </p>
+</div>
+<div class="project-item" id="ia-aplicada">
+<span>IA Aplicada</span>
+<p>
+                Pesquisa e desenvolvimento prático com <strong>modelos de linguagem, agentes autônomos e contexto persistente</strong>. Experimentação entre provedores em nuvem e modelos locais, sempre com foco em utilidade real, controle e integração entre ferramentas.
+              </p>
+</div>
+<div class="project-item" id="blog">
+<span>Blog Pessoal</span>
+<p>
+<strong>jrpasolini.wordpress.com</strong> — 115 textos escritos entre 2004 e 2015 sobre tecnologia, música, filosofia e experiências pessoais. Um registro de mais de uma década de pensamento, hoje preservado como parte do acervo.
+              </p>
+</div>
+<div class="project-item" id="pasolini-bbs">
+<span>Pasolini BBS</span>
+<p>
+                Uma <strong>Bulletin Board System</strong> nostálgica, acessível via telnet, construída sobre a plataforma <strong>Mystic BBS</strong>. Resgata a experiência dos primórdios da internet — menus em texto, mensagens, arquivos e a atmosfera única das BBS dos anos 80 e 90. Um projeto que une <strong>retrocomputação, preservação digital e a estética das redes que vieram antes da web</strong>.
+              </p>
+</div>
+<div class="project-item" id="emulador-msx">
+<span>Emulador MSX</span>
+<p>
+                Um emulador do clássico <strong>computador MSX</strong>, revivendo a era dos microcomputadores dos anos 80. O projeto resgata jogos, programas e a experiência completa de uma plataforma que marcou o início da computação doméstica — um tributo à <strong>memória afetiva e à história dos computadores pessoais</strong>.
+              </p>
+</div>
+<div class="project-item" id="agente-digital-pessoal">
+<span>Agente Digital Pessoal</span>
+<p>
+                Um agente de inteligência artificial concebido como <strong>presença contínua</strong>, com memória persistente, contexto organizado e uma <strong>identidade digital consistente</strong>. Integra voz natural e múltiplos canais para acompanhar interações, acumular conhecimento e evoluir com o tempo.
+              </p>
+</div>
+</div>
+<div aria-label="Palavras-chave dos projetos" class="tag-cloud project-tags">
+<button aria-controls="memoria-digital-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="memoria-digital-popover" type="button">Memória Digital</button>
+<button aria-controls="automation-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="automation-popover" type="button">Automação</button>
+<button aria-controls="agentes-ia-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="agentes-ia-popover" type="button">Agentes de IA</button>
+<button aria-controls="knowledge-graphs-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="knowledge-graphs-popover" type="button">Knowledge Graphs</button>
+<button aria-controls="infra-local-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="infra-local-popover" type="button">Infraestrutura Local</button>
+<button aria-controls="pesquisa-aplicada-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="pesquisa-aplicada-popover" type="button">Pesquisa Aplicada</button>
+<button aria-controls="ollama-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="ollama-popover" type="button">Ollama</button>
+<button aria-controls="comfyui-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="comfyui-popover" type="button">ComfyUI</button>
+<button aria-controls="openclaw-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="openclaw-popover" type="button">OpenClaw</button>
+<button aria-controls="hermes-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="hermes-popover" type="button">Hermes Agent</button>
+<button aria-controls="jellyfin-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="jellyfin-popover" type="button">Jellyfin</button>
+<button aria-controls="presenca-digital-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="presenca-digital-popover" type="button">Agente Digital Pessoal</button>
+<button aria-controls="msx-popover" aria-expanded="false" aria-haspopup="dialog" class="tag tag-interactive" data-popover="msx-popover" type="button">MSX</button>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="contato">
+<div class="page-shell section-grid">
+<header class="fade-up">
+<p class="section-kicker">04</p>
+<h2>Contato</h2>
+</header>
+<div class="section-copy fade-up">
+<p>
+            Este site mostra apenas a primeira página. Para conhecer um pouco
+            mais da trajetória, dos projetos ou trocar ideias sobre tecnologia,
+            os caminhos abaixo estão abertos.
+          </p>
+<div class="contact-links">
+<a aria-label="Blog — abre em nova aba" class="contact-link" href="https://jrpasolini.wordpress.com" rel="noopener noreferrer" target="_blank">
+              Blog
+            </a>
+<a aria-label="X (Twitter) — abre em nova aba" class="contact-link" href="https://x.com/jrpasolini" rel="noopener noreferrer" target="_blank">
+              X
+            </a>
+<a aria-label="Facebook — abre em nova aba" class="contact-link" href="https://www.facebook.com/antonio.pasolini85" rel="noopener noreferrer" target="_blank">
+              Facebook
+            </a>
+<a aria-label="Instagram — abre em nova aba" class="contact-link" href="https://www.instagram.com/antonio.pasolini85/" rel="noopener noreferrer" target="_blank">
+              Instagram
+            </a>
+<a aria-label="GitHub — abre em nova aba" class="contact-link" href="https://github.com/jrpasolini" rel="noopener noreferrer" target="_blank">
+              GitHub
+            </a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="page-shell footer-row">
+<span>© <span id="year"></span> Antonio Pasolini Junior</span>
+<span>Construído com intenção, curiosidade, metilfenidato e café sem açúcar.</span>
+</div>
+</footer>
+</div><!-- /content-area -->
+<aside class="sidebar-right">
+<section aria-labelledby="graph-title" class="graph-panel">
+<header class="graph-panel-header">
+<div class="graph-panel-title">
+<strong id="graph-title">Grafo interativo</strong>
+<span id="graph-context-label">Visão geral da página</span>
+</div>
+<div aria-label="Controles do grafo" class="graph-toolbar">
+<button aria-label="Diminuir zoom" class="graph-tool" id="graph-zoom-out" title="Diminuir zoom" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4M8 11h6"></path></svg>
+</button>
+<button aria-label="Centralizar grafo" class="graph-tool" id="graph-reset" title="Centralizar" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"></path><circle cx="12" cy="12" r="3"></circle></svg>
+</button>
+<button aria-label="Aumentar zoom" class="graph-tool" id="graph-zoom-in" title="Aumentar zoom" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4M11 8v6M8 11h6"></path></svg>
+</button>
+<button aria-label="Abrir grafo em tela cheia" aria-pressed="false" class="graph-tool" id="graph-fullscreen" title="Tela cheia" type="button">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5"></path></svg>
+</button>
+</div>
+</header>
+<div aria-label="Mapa de navegação interativo" class="graph-stage" id="graph-stage">
+<svg aria-labelledby="graph-title graph-context-label" class="graph-canvas" id="graph-canvas" role="img" viewbox="0 0 320 275">
+<g id="graph-viewport"></g>
+</svg>
+<span class="graph-hint">arraste · role para zoom</span>
+</div>
+</section>
+<div class="sidebar-spacer"></div>
+</aside>
+</div><!-- /layout-wrapper -->
+<div aria-label="Informações sobre Automação" class="tag-popover" hidden="" id="automation-popover" role="dialog">
+<strong>Automação</strong>
+<p>
+      Criação de fluxos que eliminam trabalho manual repetitivo e transformam processos lentos em <strong>sistemas confiáveis</strong>. O foco está em reduzir esforço humano sem perder controle nem legibilidade.
+    </p>
+</div>
+<div aria-label="Informações sobre Engenharia de Software" class="tag-popover" hidden="" id="eng-software-popover" role="dialog">
+<strong>Engenharia de Software</strong>
+<p>
+      Formação em andamento que me deu método para o que antes era só intuição. <strong>Requisitos, arquitetura, programação e disciplina de documentação</strong> viraram ferramentas concretas para estruturar sistemas reais, tanto no serviço público quanto nos meus projetos pessoais.
+    </p>
+</div>
+<div aria-label="Informações sobre Inteligência Artificial" class="tag-popover" hidden="" id="ia-popover" role="dialog">
+<strong>Inteligência Artificial</strong>
+<p>
+      Pesquisa e aplicação prática com modelos locais e em nuvem. Trabalho com <strong>agentes, contexto persistente, geração de conteúdo e integração entre provedores</strong>, sempre priorizando controle, privacidade e utilidade no dia a dia.
+    </p>
+</div>
+<div aria-label="Informações sobre Python" class="tag-popover" hidden="" id="python-popover" role="dialog">
+<strong>Python</strong>
+<p>
+      Minha linguagem principal para <strong>automação, scripts e integração de sistemas</strong>. Uso no desenvolvimento de fluxos, agentes e ferramentas que conectam diferentes serviços e reduzem trabalho manual repetitivo.
+    </p>
+</div>
+<div aria-label="Informações sobre C/C++" class="tag-popover" hidden="" id="c-cpp-popover" role="dialog">
+<strong>C/C++</strong>
+<p>
+      Base da formação em Engenharia de Software e da disciplina de arquitetura de computadores. Me ajudou a entender melhor o <strong>baixo nível dos sistemas</strong> e a pensar com mais precisão sobre desempenho e estrutura.
+    </p>
+</div>
+<div aria-label="Informações sobre Memória Digital" class="tag-popover" hidden="" id="memoria-digital-popover" role="dialog">
+<strong>Memória Digital</strong>
+<p>
+      Construção de um ecossistema pessoal de conhecimento estruturado — <strong>relações entre conceitos, entidades e curadoria contínua</strong>. Um sistema vivo que organiza o que aprendo e vivo, e que evolui junto comigo.
+    </p>
+</div>
+<div aria-label="Informações sobre Agentes de IA" class="tag-popover" hidden="" id="agentes-ia-popover" role="dialog">
+<strong>Agentes de IA</strong>
+<p>
+      Desenvolvimento e operação de agentes autônomos capazes de executar tarefas sob demanda, manter contexto, integrar ferramentas e funcionar com <strong>mínima intervenção manual</strong>. OpenClaw é o principal orquestrador dessa abordagem.
+    </p>
+</div>
+<div aria-label="Informações sobre Arquitetura de Sistemas" class="tag-popover" hidden="" id="arquitetura-sistemas-popover" role="dialog">
+<strong>Arquitetura de Sistemas</strong>
+<p>
+      Aplicação prática de princípios de <strong>design, modularidade e integração</strong>. Foco em criar estruturas que sejam confiáveis, expansíveis e que realmente façam sentido no uso cotidiano.
+    </p>
+</div>
+<div aria-label="Informações sobre Knowledge Graphs" class="tag-popover" hidden="" id="knowledge-graphs-popover" role="dialog">
+<strong>Knowledge Graphs</strong>
+<p>
+      Organização do conhecimento através de <strong>relações explícitas entre conceitos e entidades</strong>. Uso tanto na navegação deste site quanto nos sistemas pessoais de memória, para tornar o conhecimento navegável e vivo.
+    </p>
+</div>
+<div aria-label="Informações sobre Infraestrutura Local" class="tag-popover" hidden="" id="infra-local-popover" role="dialog">
+<strong>Infraestrutura Local</strong>
+<p>
+      Stack pessoal mantida em casa, com prioridade em <strong>controle, privacidade e disponibilidade</strong>. Inclui orquestração de agentes (OpenClaw, Hermes), modelos locais, geração de imagem, indexação semântica e serviços de mídia com Jellyfin — tudo integrado entre WSL2 e servidor DietPi dedicado.
+    </p>
+</div>
+<div aria-label="Informações sobre Pesquisa Aplicada" class="tag-popover" hidden="" id="pesquisa-aplicada-popover" role="dialog">
+<strong>Pesquisa Aplicada</strong>
+<p>
+      Experimentação prática com <strong>modelos de linguagem, agentes, contexto persistente e integração entre provedores</strong>. O critério principal é utilidade real — o que funciona no dia a dia, não apenas o que é teoricamente interessante.
+    </p>
+</div>
+<div aria-label="Informações sobre Ollama" class="tag-popover" hidden="" id="ollama-popover" role="dialog">
+<strong>Ollama</strong>
+<p>
+      Uso de modelos de linguagem locais para inferência com <strong>privacidade e baixo custo</strong>. Base da experimentação com agentes e sistemas que precisam rodar de forma contínua e controlada.
+    </p>
+</div>
+<div aria-label="Informações sobre ComfyUI" class="tag-popover" hidden="" id="comfyui-popover" role="dialog">
+<strong>ComfyUI</strong>
+<p>
+      Ambiente de geração de imagem com <strong>modelos de difusão</strong>, integrado à stack pessoal. Permite experimentação visual com controle total sobre o fluxo e os modelos utilizados.
+    </p>
+</div>
+<div aria-label="Informações sobre OpenClaw" class="tag-popover" hidden="" id="openclaw-popover" role="dialog">
+<strong>OpenClaw</strong>
+<p>
+      Plataforma de orquestração de agentes que integra <strong>ferramentas, memória e automação</strong>. Usada como base para assistentes pessoais, execução de fluxos complexos e integração entre sistemas — do gerenciamento de conhecimento à operação de serviços do dia a dia.
+    </p>
+</div>
+<div aria-label="Informações sobre Hermes Agent" class="tag-popover" hidden="" id="hermes-popover" role="dialog">
+<strong>Hermes Agent</strong>
+<p>
+      Agente assistente residente no servidor DietPi, responsável por <strong>orquestrar serviços domésticos</strong>, gerenciar downloads, monitorar o sistema e executar tarefas de suporte na infraestrutura local.
+    </p>
+</div>
+<div aria-label="Informações sobre Jellyfin" class="tag-popover" hidden="" id="jellyfin-popover" role="dialog">
+<strong>Jellyfin</strong>
+<p>
+      Servidor de mídia de código aberto para <strong>organização e streaming</strong> de filmes, séries, músicas e fotos. Hospedado no servidor DietPi, permite acesso à biblioteca multimídia de qualquer dispositivo na rede.
+    </p>
+</div>
+<div aria-label="Informações sobre Agente Digital Pessoal" class="tag-popover" hidden="" id="presenca-digital-popover" role="dialog">
+<strong>Agente Digital Pessoal</strong>
+<p>
+      Agente de IA projetado como <strong>presença contínua</strong>, com memória persistente organizada em tiers inspirados na cognição humana, índices semântico-vetoriais, curadoria contínua e um <strong>context-tree</strong> que conecta decisões, aprendizados e relações entre conceitos. Integra voz natural com ElevenLabs e pode receber, compreender e responder por áudio. Acessível via <strong>WhatsApp, Telegram, webchat e outros canais</strong>, acumula conhecimento, aprende com o contexto e sustenta uma identidade digital consistente ao longo do tempo.
+    </p>
+</div>
+<div aria-label="Informações sobre MSX" class="tag-popover" hidden="" id="msx-popover" role="dialog">
+<strong>MSX</strong>
+<p>
+      Padrão de microcomputadores domésticos dos anos 80 que marcou meu <strong>primeiro contato com um computador</strong>. Utilizava <strong>gravador de fita K7</strong> para carregar programas e, posteriormente, <strong>disquetes de 5¼ polegadas</strong>. Uma plataforma que despertou a curiosidade pelo universo da computação e plantou as sementes de tudo que viria depois.
+    </p>
+</div>
+<script>
+    const year = document.querySelector("#year");
+    year.textContent = new Date().getFullYear();
+
+    /* Animações de entrada */
+    const revealItems = document.querySelectorAll(".fade-up");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealItems.forEach((item) => observer.observe(item));
+
+    /* Tema claro/escuro com preferência persistente */
+    const themeButtons = document.querySelectorAll("[data-theme-choice]");
+    const savedTheme = localStorage.getItem("junior-site-theme");
+    const initialTheme =
+      savedTheme ||
+      (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+
+    function applyTheme(theme) {
+      document.body.dataset.theme = theme;
+      localStorage.setItem("junior-site-theme", theme);
+      themeButtons.forEach((button) => {
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.themeChoice === theme)
+        );
+      });
+    }
+
+    themeButtons.forEach((button) => {
+      button.addEventListener("click", () => applyTheme(button.dataset.themeChoice));
+    });
+    applyTheme(initialTheme);
+
+    /* Dados do grafo */
+    const graphNodes = [
+      { id: "inicio", label: "Junior", href: "#inicio", x: 160, y: 125, type: "root", parent: null },
+
+      { id: "trajetoria", label: "Trajetória", href: "#trajetoria", x: 94, y: 68, type: "parent", parent: "inicio" },
+      { id: "carreira", label: "Carreira", href: "#carreira", x: 228, y: 64, type: "parent", parent: "inicio" },
+      { id: "projetos", label: "Projetos", href: "#projetos", x: 85, y: 190, type: "parent", parent: "inicio" },
+      { id: "contato", label: "Contato", href: "#contato", x: 238, y: 191, type: "parent", parent: "inicio" },
+
+      { id: "atuacao", label: "Atuação", href: "#atuacao", x: 275, y: 97, type: "child", parent: "carreira" },
+      { id: "especialidade", label: "Especialidade", href: "#especialidade", x: 280, y: 130, type: "child", parent: "carreira" },
+      { id: "abordagem", label: "Abordagem", href: "#abordagem", x: 268, y: 160, type: "child", parent: "carreira" },
+
+      { id: "memory-wiki", label: "Memory Wiki", href: "#memory-wiki", x: 28, y: 217, type: "child", parent: "projetos" },
+      { id: "projeto-automacao", label: "Automação RBE", href: "#projeto-automacao", x: 59, y: 247, type: "child", parent: "projetos" },
+      { id: "ia-aplicada", label: "IA Aplicada", href: "#ia-aplicada", x: 116, y: 260, type: "child", parent: "projetos" },
+      { id: "stack-pessoal", label: "Stack", href: "#stack-pessoal", x: 155, y: 232, type: "child", parent: "projetos" },
+      { id: "blog", label: "Blog Pessoal", href: "#blog", x: 80, y: 300, type: "child", parent: "projetos" },
+      { id: "pasolini-bbs", label: "BBS", href: "#pasolini-bbs", x: 28, y: 310, type: "child", parent: "projetos" },
+      { id: "emulador-msx", label: "MSX", href: "#emulador-msx", x: 55, y: 330, type: "child", parent: "projetos" },
+      { id: "agente-digital-pessoal", label: "Agente Digital", href: "#agente-digital-pessoal", x: 130, y: 290, type: "child", parent: "projetos" },
+
+      { id: "blog-contato", label: "Blog", href: "https://jrpasolini.wordpress.com", x: 250, y: 228, type: "child", parent: "contato", external: true },
+      { id: "x", label: "X", href: "https://x.com/jrpasolini", x: 282, y: 250, type: "child", parent: "contato", external: true },
+      { id: "instagram", label: "Instagram", href: "https://www.instagram.com/antonio.pasolini85/", x: 221, y: 259, type: "child", parent: "contato", external: true },
+      { id: "github", label: "GitHub", href: "https://github.com/jrpasolini", x: 190, y: 270, type: "child", parent: "contato", external: true }
+    ];
+
+    const graphEdges = graphNodes
+      .filter((node) => node.parent)
+      .map((node) => ({ source: node.parent, target: node.id }));
+
+    const viewport = document.querySelector("#graph-viewport");
+    const svg = document.querySelector("#graph-canvas");
+    const stage = document.querySelector("#graph-stage");
+    const graphPanel = document.querySelector(".graph-panel");
+    const graphBackdrop = document.querySelector(".graph-backdrop");
+    const graphContextLabel = document.querySelector("#graph-context-label");
+    const fullscreenButton = document.querySelector("#graph-fullscreen");
+    const nodeById = new Map(graphNodes.map((node) => [node.id, node]));
+
+    const NS = "http://www.w3.org/2000/svg";
+
+    function createSvgElement(tag, attrs = {}) {
+      const element = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([key, value]) => element.setAttribute(key, value));
+      return element;
+    }
+
+    graphEdges.forEach((edge) => {
+      const source = nodeById.get(edge.source);
+      const target = nodeById.get(edge.target);
+      const line = createSvgElement("line", {
+        x1: source.x,
+        y1: source.y,
+        x2: target.x,
+        y2: target.y,
+        class: "graph-edge",
+        "data-source": edge.source,
+        "data-target": edge.target
+      });
+      viewport.appendChild(line);
+    });
+
+    graphNodes.forEach((node) => {
+      const group = createSvgElement("g", {
+        class: `graph-node is-${node.type}`,
+        transform: `translate(${node.x} ${node.y})`,
+        tabindex: "0",
+        role: "link",
+        "aria-label": node.external
+          ? `${node.label}, abre em nova aba`
+          : `Ir para ${node.label}`,
+        "data-node-id": node.id
+      });
+
+      const circle = createSvgElement("circle", {
+        r: node.type === "root" ? 7 : node.type === "parent" ? 5.3 : 4
+      });
+
+      const anchor = createSvgElement("text", {
+        x: node.x > 245 ? -9 : 9,
+        y: node.y > 245 ? -8 : 4,
+        "text-anchor": node.x > 245 ? "end" : "start"
+      });
+      anchor.textContent = node.label;
+
+      group.append(circle, anchor);
+      viewport.appendChild(group);
+
+      const activateNode = () => {
+        if (node.external) {
+          window.open(node.href, "_blank", "noopener");
+        } else {
+          document.querySelector(node.href)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      };
+
+      group.addEventListener("click", activateNode);
+      group.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          activateNode();
+        }
+      });
+    });
+
+    /* Pan e zoom */
+    const GRAPH_BASE_SCALE = 1.32;
+    const GRAPH_CHILD_SCALE = 1.53;
+    let transform = { x: 0, y: 0, scale: GRAPH_BASE_SCALE };
+    let dragging = false;
+    let dragStart = null;
+
+    function applyGraphTransform() {
+      viewport.setAttribute(
+        "transform",
+        `translate(${transform.x} ${transform.y}) scale(${transform.scale})`
+      );
+    }
+
+    function zoomAt(factor, clientX, clientY) {
+      const rect = svg.getBoundingClientRect();
+      const svgX = ((clientX - rect.left) / rect.width) * svg.viewBox.baseVal.width;
+      const svgY = ((clientY - rect.top) / rect.height) * svg.viewBox.baseVal.height;
+      const nextScale = Math.min(2.8, Math.max(.65, transform.scale * factor));
+
+      transform.x = svgX - ((svgX - transform.x) * nextScale) / transform.scale;
+      transform.y = svgY - ((svgY - transform.y) * nextScale) / transform.scale;
+      transform.scale = nextScale;
+      applyGraphTransform();
+    }
+
+    stage.addEventListener("wheel", (event) => {
+      event.preventDefault();
+      zoomAt(event.deltaY < 0 ? 1.12 : .89, event.clientX, event.clientY);
+    }, { passive: false });
+
+    stage.addEventListener("pointerdown", (event) => {
+      if (event.target.closest(".graph-node")) return;
+      dragging = true;
+      dragStart = {
+        clientX: event.clientX,
+        clientY: event.clientY,
+        x: transform.x,
+        y: transform.y
+      };
+      stage.setPointerCapture(event.pointerId);
+    });
+
+    stage.addEventListener("pointermove", (event) => {
+      if (!dragging) return;
+      const rect = svg.getBoundingClientRect();
+      const factorX = svg.viewBox.baseVal.width / rect.width;
+      const factorY = svg.viewBox.baseVal.height / rect.height;
+      transform.x = dragStart.x + (event.clientX - dragStart.clientX) * factorX;
+      transform.y = dragStart.y + (event.clientY - dragStart.clientY) * factorY;
+      applyGraphTransform();
+    });
+
+    function endDrag(event) {
+      if (!dragging) return;
+      dragging = false;
+      if (stage.hasPointerCapture(event.pointerId)) {
+        stage.releasePointerCapture(event.pointerId);
+      }
+    }
+    stage.addEventListener("pointerup", endDrag);
+    stage.addEventListener("pointercancel", endDrag);
+
+    document.querySelector("#graph-zoom-in").addEventListener("click", () => {
+      const rect = svg.getBoundingClientRect();
+      zoomAt(1.18, rect.left + rect.width / 2, rect.top + rect.height / 2);
+    });
+
+    document.querySelector("#graph-zoom-out").addEventListener("click", () => {
+      const rect = svg.getBoundingClientRect();
+      zoomAt(.84, rect.left + rect.width / 2, rect.top + rect.height / 2);
+    });
+
+    function resetGraphView() {
+      transform = { x: 0, y: 0, scale: GRAPH_BASE_SCALE };
+      applyGraphTransform();
+    }
+    document.querySelector("#graph-reset").addEventListener("click", resetGraphView);
+
+    /* Tela cheia */
+    function setGraphFullscreen(open) {
+      graphPanel.classList.toggle("is-fullscreen", open);
+      graphBackdrop.hidden = !open;
+      document.body.classList.toggle("graph-open", open);
+      fullscreenButton.setAttribute("aria-pressed", String(open));
+      fullscreenButton.setAttribute(
+        "aria-label",
+        open ? "Fechar tela cheia" : "Abrir grafo em tela cheia"
+      );
+      fullscreenButton.innerHTML = open
+        ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3v6H3M15 3v6h6M21 15h-6v6M3 15h6v6"/></svg>'
+        : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5"/></svg>';
+      requestAnimationFrame(resetGraphView);
+    }
+
+    fullscreenButton.addEventListener("click", () => {
+      setGraphFullscreen(!graphPanel.classList.contains("is-fullscreen"));
+    });
+
+    graphBackdrop.addEventListener("click", () => setGraphFullscreen(false));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && graphPanel.classList.contains("is-fullscreen")) {
+        setGraphFullscreen(false);
+      }
+    });
+
+    /* Sincronização entre rolagem e grafo */
+    const observedIds = graphNodes
+      .filter((node) => !node.external)
+      .map((node) => node.id);
+    const observedElements = observedIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    const parentSectionByNode = {
+      inicio: "inicio",
+      trajetoria: "trajetoria",
+      carreira: "carreira",
+      atuacao: "carreira",
+      especialidade: "carreira",
+      abordagem: "carreira",
+      projetos: "projetos",
+      "memory-wiki": "projetos",
+      "projeto-automacao": "projetos",
+      "ia-aplicada": "projetos",
+      "stack-pessoal": "projetos",
+      "voz-humana": "projetos",
+      "blog": "projetos",
+      "pasolini-bbs": "projetos",
+      "emulador-msx": "projetos",
+      "agente-digital-pessoal": "projetos",
+      "laboratorio": "projetos",
+      contato: "contato"
+    };
+
+    function getContextSet(activeId) {
+      const set = new Set(["inicio", activeId]);
+      const active = nodeById.get(activeId);
+      if (active?.parent) set.add(active.parent);
+
+      const sectionId = parentSectionByNode[activeId] || activeId;
+      set.add(sectionId);
+
+      graphNodes.forEach((node) => {
+        if (node.parent === sectionId) set.add(node.id);
+      });
+
+      return set;
+    }
+
+    function updateGraphContext(activeId) {
+      const active = nodeById.get(activeId) || nodeById.get("inicio");
+      const context = getContextSet(active.id);
+
+      document.querySelectorAll(".graph-node").forEach((element) => {
+        const id = element.dataset.nodeId;
+        element.classList.toggle("is-active", id === active.id);
+        element.classList.toggle("is-dimmed", !context.has(id));
+      });
+
+      document.querySelectorAll(".graph-edge").forEach((line) => {
+        const contextual =
+          context.has(line.dataset.source) && context.has(line.dataset.target);
+        line.classList.toggle("is-context", contextual);
+      });
+
+      graphContextLabel.textContent =
+        active.id === "inicio" ? "Visão geral da página" : `Você está em: ${active.label}`;
+
+      const focusNode = nodeById.get(parentSectionByNode[active.id] || active.id);
+      if (focusNode && !dragging) {
+        const targetScale = active.type === "child"
+          ? GRAPH_CHILD_SCALE
+          : GRAPH_BASE_SCALE;
+        transform.scale = targetScale;
+        transform.x = 160 - focusNode.x * targetScale;
+        transform.y = 137 - focusNode.y * targetScale;
+        applyGraphTransform();
+      }
+    }
+
+    function detectCurrentSection() {
+      let current = "inicio";
+      const marker = window.innerHeight * .43;
+
+      observedElements.forEach((element) => {
+        if (element.getBoundingClientRect().top <= marker) {
+          current = element.id;
+        }
+      });
+
+      updateGraphContext(current);
+    }
+
+    let scrollTicking = false;
+    window.addEventListener("scroll", () => {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        detectCurrentSection();
+        scrollTicking = false;
+      });
+    }, { passive: true });
+    detectCurrentSection();
+
+    /* Popover da tag Automação */
+    const popoverTriggers = document.querySelectorAll("[data-popover]");
+    let activePopoverTrigger = null;
+
+    const closeTagPopover = () => {
+      if (!activePopoverTrigger) return;
+      const popover = document.getElementById(activePopoverTrigger.dataset.popover);
+      popover.hidden = true;
+      activePopoverTrigger.setAttribute("aria-expanded", "false");
+      activePopoverTrigger = null;
+    };
+
+    const positionTagPopover = (trigger, popover) => {
+      const triggerRect = trigger.getBoundingClientRect();
+      const popoverRect = popover.getBoundingClientRect();
+      const viewportPadding = 16;
+      const spacing = 12;
+
+      let left = triggerRect.left + triggerRect.width / 2 - popoverRect.width / 2;
+      left = Math.max(
+        viewportPadding,
+        Math.min(left, window.innerWidth - popoverRect.width - viewportPadding)
+      );
+
+      let top = triggerRect.bottom + spacing;
+      if (top + popoverRect.height > window.innerHeight - viewportPadding) {
+        top = triggerRect.top - popoverRect.height - spacing;
+      }
+
+      popover.style.left = `${left}px`;
+      popover.style.top = `${Math.max(viewportPadding, top)}px`;
+    };
+
+    popoverTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (activePopoverTrigger === trigger) {
+          closeTagPopover();
+          return;
+        }
+
+        closeTagPopover();
+        const popover = document.getElementById(trigger.dataset.popover);
+        popover.hidden = false;
+        trigger.setAttribute("aria-expanded", "true");
+        activePopoverTrigger = trigger;
+        positionTagPopover(trigger, popover);
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".tag-popover")) closeTagPopover();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeTagPopover();
+    });
+
+    window.addEventListener("scroll", closeTagPopover, { passive: true });
+    window.addEventListener("resize", closeTagPopover);
+  </script>
+
+<script>
+(() => {
+  const italian = {"meta[name=\"description\"]@content": "Sito personale di Antonio Pasolini Junior — ingegneria del software, intelligenza artificiale, automazione e memoria digitale.", ".theme-toggle@aria-label": "Seleziona tema", "[data-theme-choice=\"dark\"]@aria-label": "Usa tema scuro", "[data-theme-choice=\"dark\"]@title": "Usa tema scuro", "[data-theme-choice=\"light\"]@aria-label": "Usa tema chiaro", "[data-theme-choice=\"light\"]@title": "Usa tema chiaro", ".language-toggle@aria-label": "Seleziona lingua", "[data-language-choice=\"pt-BR\"]@aria-label": "Portoghese brasiliano", "[data-language-choice=\"pt-BR\"]@title": "Portoghese brasiliano", ".portrait-wrap img@alt": "Ritratto in bianco e nero di Antonio Pasolini Junior", "#inicio .eyebrow": "Ingegneria · Sistemi · Intelligenza Artificiale", "#inicio .hero-copy": "Italo-brasiliano, dipendente pubblico e studente di Ingegneria del Software. Esploro il rapporto tra <strong>tecnologia, memoria digitale, automazione e conoscenza organizzata</strong> — costruendo sistemi sensati, capaci di crescere nel tempo e di liberare energia per ciò che conta davvero.", "#inicio .scroll-note": "scopri il percorso", "#trajetoria h2": "Percorso", "#trajetoria .section-copy p:nth-of-type(1)": "In contatto con il mondo dei computer fin dall’infanzia, il mio percorso nasce dall’incontro tra servizio pubblico e tecnologia. Dopo oltre un decennio nell’amministrazione pubblica della capitale dello Espírito Santo, ho sviluppato uno sguardo pratico su <strong>processi, persone e sistemi</strong> — ed è stata proprio questa esperienza a riportarmi in aula.", "#trajetoria .section-copy p:nth-of-type(2)": "Attualmente studio Ingegneria del Software, dove trovo gli strumenti per dare struttura a ciò che prima era soprattutto intuizione: <strong>automazione dei flussi, organizzazione della conoscenza, architettura dei sistemi e intelligenza artificiale applicata</strong>.", "#trajetoria .section-copy p:nth-of-type(3)": "Il mio metodo di lavoro combina <strong>osservazione attenta, documentazione disciplinata e sperimentazione responsabile</strong>. Credo che i sistemi ben progettati non si limitino a risolvere problemi: portano ordine, leggibilità e coerenza a ciò che prima era frammentato.", "#trajetoria .section-copy p:nth-of-type(4)": "Più che accumulare strumenti, cerco di creare <strong>strutture sensate, capaci di crescere nel tempo e di servire scopi reali</strong>.", "#carreira h2": "Carriera", "#carreira > .page-shell > .section-copy > p:first-child": "La mia attività unisce esperienza nel servizio pubblico, formazione in Ingegneria del Software e ricerca applicata sui sistemi intelligenti.", "#atuacao span": "Attività", "#atuacao p": "Dipendente pubblico da oltre 10 anni nell’amministrazione della capitale dello Espírito Santo, lavoro in un’unità sanitaria. Mi occupo di coordinamento dei team, processi delle risorse umane, organizzazione dei turni, richieste di manutenzione e miglioramenti operativi quotidiani. È un ambiente di grande complessità umana e amministrativa — ed è proprio questa esperienza che mi ha insegnato a osservare in modo concreto <strong>processi, persone e sistemi</strong>. Parallelamente sviluppo automazioni e strumenti che rendono il lavoro più rapido, affidabile e meno dipendente da attività manuali ripetitive.", "#especialidade span": "Specializzazione", "#especialidade p": "La formazione in Ingegneria del Software è stata la naturale evoluzione di questo percorso: dare metodo e struttura a ciò che prima veniva risolto con improvvisazione ed esperienza accumulata. Oggi applico <strong>architettura dei sistemi, intelligenza artificiale e automazione dei processi</strong> per creare soluzioni che funzionano davvero nella vita quotidiana. La mia specializzazione consiste nell’<strong>integrare strumenti, organizzare la conoscenza e costruire flussi intelligenti</strong> — con agenti di IA, script di automazione o sistemi di memoria digitale. Non mi interessa lo strumento in sé, ma il sistema che contribuisce a sostenere.", "#abordagem span": "Approccio", "#abordagem p": "Il filo conduttore è semplice e costante: <strong>osservare con attenzione, documentare con disciplina, sperimentare con responsabilità ed evolvere con coerenza</strong>. Preferisco soluzioni che crescano nel tempo, siano leggibili e liberino energia invece di consumarla. Lavoro sempre tra pratica e struttura — dal terreno operativo fino all’architettura del sistema.", "#carreira .tag-cloud@aria-label": "Aree di interesse", "#projetos h2": "Progetti", "#projetos > .page-shell > .section-copy > p:first-child": "Alcuni progetti nascono come strumenti. Altri nascono come domande. Quelli più interessanti, per me, finiscono per diventare entrambe le cose.", "#memory-wiki p": "Un ecosistema personale di <strong>memoria strutturata</strong> che organizza conoscenze, concetti e relazioni tra entità. Alimentato da una curatela continua (umana + IA), trasforma registri dispersi in una base di conoscenza viva, navigabile e in costante evoluzione.", "#projeto-automacao span": "Automazione RBE", "#projeto-automacao p": "Sistema di automazione per la coda di regolazione della sanità pubblica. Integra <strong>navigazione web, estrazione dei dati, generazione di documenti e invio organizzato delle informazioni</strong> — il tutto eseguito da agenti autonomi con supervisione minima. È nato da un problema concreto del servizio e oggi svolge in pochi minuti ciò che prima richiedeva ore di lavoro manuale.", "#stack-pessoal span": "Stack &amp; Agenti", "#stack-pessoal p": "Infrastruttura personale costruita e mantenuta in casa. <strong>OpenClaw</strong> come orchestratore di agenti, modelli locali tramite <strong>Ollama</strong>, generazione di immagini con <strong>ComfyUI</strong> e indicizzazione semantica. Tutto gira su <strong>WSL2 (Debian)</strong> con GPU dedicata, affiancato da un server DietPi che ospita l’agente <strong>Hermes</strong> e i servizi multimediali con <strong>Jellyfin</strong>.", "#ia-aplicada span": "IA Applicata", "#ia-aplicada p": "Ricerca e sviluppo pratico con <strong>modelli linguistici, agenti autonomi e contesto persistente</strong>. Sperimentazione tra fornitori cloud e modelli locali, sempre con attenzione all’utilità reale, al controllo e all’integrazione tra strumenti.", "#blog span": "Blog Personale", "#blog p": "<strong>jrpasolini.wordpress.com</strong> — 115 testi scritti tra il 2004 e il 2015 su tecnologia, musica, filosofia ed esperienze personali. Più di un decennio di pensiero, oggi conservato come parte dell’archivio.", "#pasolini-bbs p": "Una <strong>Bulletin Board System</strong> nostalgica, accessibile via telnet e costruita sulla piattaforma <strong>Mystic BBS</strong>. Ricrea l’esperienza degli albori di Internet — menu testuali, messaggi, file e l’atmosfera unica delle BBS degli anni Ottanta e Novanta. Un progetto che unisce <strong>retrocomputing, conservazione digitale e l’estetica delle reti precedenti al web</strong>.", "#emulador-msx span": "Emulatore MSX", "#emulador-msx p": "Un emulatore del classico <strong>computer MSX</strong>, che fa rivivere l’epoca dei microcomputer degli anni Ottanta. Il progetto recupera giochi, programmi e l’esperienza completa di una piattaforma che ha segnato l’inizio dell’informatica domestica — un omaggio alla <strong>memoria affettiva e alla storia dei personal computer</strong>.", "#agente-digital-pessoal span": "Agente Digitale Personale", "#agente-digital-pessoal p": "Un agente di intelligenza artificiale concepito come <strong>presenza continua</strong>, con memoria persistente, contesto organizzato e un’<strong>identità digitale coerente</strong>. Integra voce naturale e più canali per accompagnare le interazioni, accumulare conoscenza ed evolvere nel tempo.", "#projetos .project-tags@aria-label": "Parole chiave dei progetti", "#contato h2": "Contatti", "#contato .section-copy > p": "Questo sito mostra soltanto la prima pagina. Per conoscere meglio il percorso e i progetti, oppure per scambiare idee sulla tecnologia, i canali qui sotto sono aperti.", "footer .footer-row span:last-child": "Costruito con intenzione, curiosità, metilfenidato e caffè senza zucchero.", "#graph-title": "Grafo interattivo", "#graph-context-label": "Panoramica della pagina", "#graph-zoom-out@aria-label": "Riduci zoom", "#graph-zoom-out@title": "Riduci zoom", "#graph-reset@aria-label": "Centra grafo", "#graph-reset@title": "Centra", "#graph-zoom-in@aria-label": "Aumenta zoom", "#graph-zoom-in@title": "Aumenta zoom", "#graph-fullscreen@aria-label": "Apri il grafo a schermo intero", "#graph-fullscreen@title": "Schermo intero", "#graph-stage@aria-label": "Mappa di navigazione interattiva", ".graph-hint": "trascina · scorri per zoomare"};
+  const buttonTranslations = {"Engenharia de Software": "Ingegneria del Software", "Inteligência Artificial": "Intelligenza Artificiale", "Memória Digital": "Memoria Digitale", "Agentes de IA": "Agenti di IA", "Arquitetura de Sistemas": "Architettura dei Sistemi", "Infraestrutura Local": "Infrastruttura Locale", "Pesquisa Aplicada": "Ricerca Applicata", "Agente Digital Pessoal": "Agente Digitale Personale", "Automação": "Automazione"};
+  const popoverTranslations = {"automation-popover": ["Automazione", "Creazione di flussi che eliminano il lavoro manuale ripetitivo e trasformano processi lenti in <strong>sistemi affidabili</strong>. L’obiettivo è ridurre lo sforzo umano senza perdere controllo né leggibilità."], "eng-software-popover": ["Ingegneria del Software", "Un percorso di formazione che mi ha dato metodo per ciò che prima era soprattutto intuizione. <strong>Requisiti, architettura, programmazione e disciplina della documentazione</strong> sono diventati strumenti concreti per strutturare sistemi reali, nel servizio pubblico e nei miei progetti personali."], "ia-popover": ["Intelligenza Artificiale", "Ricerca e applicazione pratica con modelli locali e cloud. Lavoro con <strong>agenti, contesto persistente, generazione di contenuti e integrazione tra fornitori</strong>, dando sempre priorità a controllo, privacy e utilità quotidiana."], "python-popover": ["Python", "Il mio linguaggio principale per <strong>automazione, script e integrazione di sistemi</strong>. Lo uso per sviluppare flussi, agenti e strumenti che collegano servizi diversi e riducono il lavoro manuale ripetitivo."], "c-cpp-popover": ["C/C++", "Base della mia formazione in Ingegneria del Software e nello studio dell’architettura dei calcolatori. Mi ha aiutato a comprendere meglio il <strong>basso livello dei sistemi</strong> e a ragionare con maggiore precisione su prestazioni e struttura."], "memoria-digital-popover": ["Memoria Digitale", "Costruzione di un ecosistema personale di conoscenza strutturata — <strong>relazioni tra concetti, entità e curatela continua</strong>. Un sistema vivo che organizza ciò che imparo e vivo, evolvendo insieme a me."], "agentes-ia-popover": ["Agenti di IA", "Sviluppo e gestione di agenti autonomi capaci di eseguire attività su richiesta, mantenere il contesto, integrare strumenti e funzionare con <strong>intervento manuale minimo</strong>. OpenClaw è il principale orchestratore di questo approccio."], "arquitetura-sistemas-popover": ["Architettura dei Sistemi", "Applicazione pratica dei principi di <strong>design, modularità e integrazione</strong>. L’obiettivo è creare strutture affidabili, espandibili e davvero sensate nell’uso quotidiano."], "knowledge-graphs-popover": ["Knowledge Graphs", "Organizzazione della conoscenza attraverso <strong>relazioni esplicite tra concetti ed entità</strong>. Li utilizzo sia nella navigazione di questo sito sia nei sistemi personali di memoria, per rendere la conoscenza viva e navigabile."], "infra-local-popover": ["Infrastruttura Locale", "Stack personale mantenuto in casa, con priorità a <strong>controllo, privacy e disponibilità</strong>. Comprende orchestrazione di agenti (OpenClaw, Hermes), modelli locali, generazione di immagini, indicizzazione semantica e servizi multimediali con Jellyfin — tutto integrato tra WSL2 e un server DietPi dedicato."], "pesquisa-aplicada-popover": ["Ricerca Applicata", "Sperimentazione pratica con <strong>modelli linguistici, agenti, contesto persistente e integrazione tra fornitori</strong>. Il criterio principale è l’utilità reale: ciò che funziona nella vita quotidiana, non soltanto ciò che è interessante in teoria."], "ollama-popover": ["Ollama", "Uso di modelli linguistici locali per inferenza con <strong>privacy e costi contenuti</strong>. È la base della sperimentazione con agenti e sistemi che devono funzionare in modo continuo e controllato."], "comfyui-popover": ["ComfyUI", "Ambiente per la generazione di immagini con <strong>modelli di diffusione</strong>, integrato nello stack personale. Permette sperimentazione visiva con pieno controllo sul flusso e sui modelli utilizzati."], "openclaw-popover": ["OpenClaw", "Piattaforma di orchestrazione di agenti che integra <strong>strumenti, memoria e automazione</strong>. È la base per assistenti personali, flussi complessi e integrazione tra sistemi — dalla gestione della conoscenza ai servizi quotidiani."], "hermes-popover": ["Hermes Agent", "Agente assistente residente sul server DietPi, responsabile di <strong>orchestrare i servizi domestici</strong>, gestire i download, monitorare il sistema ed eseguire attività di supporto nell’infrastruttura locale."], "jellyfin-popover": ["Jellyfin", "Server multimediale open source per <strong>organizzare e riprodurre in streaming</strong> film, serie, musica e fotografie. Ospitato sul server DietPi, consente l’accesso alla biblioteca multimediale da qualsiasi dispositivo della rete."], "presenca-digital-popover": ["Agente Digitale Personale", "Agente di IA progettato come <strong>presenza continua</strong>, con memoria persistente organizzata in livelli ispirati alla cognizione umana, indici semantico-vettoriali, curatela continua e un <strong>context-tree</strong> che collega decisioni, apprendimenti e relazioni tra concetti. Integra voce naturale con ElevenLabs e può ricevere, comprendere e rispondere tramite audio. Accessibile via <strong>WhatsApp, Telegram, webchat e altri canali</strong>, accumula conoscenza, apprende dal contesto e mantiene nel tempo un’identità digitale coerente."], "msx-popover": ["MSX", "Standard di microcomputer domestici degli anni Ottanta che ha segnato il mio <strong>primo contatto con un computer</strong>. Utilizzava un <strong>registratore a cassette</strong> per caricare i programmi e, in seguito, <strong>floppy disk da 5¼ pollici</strong>. Una piattaforma che ha acceso la curiosità per l’informatica e piantato i semi di tutto ciò che sarebbe venuto dopo."]};
+  const graphLabelsIt = {"inicio": "Junior", "trajetoria": "Percorso", "carreira": "Carriera", "projetos": "Progetti", "contato": "Contatti", "atuacao": "Attività", "especialidade": "Specializzazione", "abordagem": "Approccio", "memory-wiki": "Memory Wiki", "projeto-automacao": "Automazione RBE", "ia-aplicada": "IA Applicata", "stack-pessoal": "Stack", "blog": "Blog Personale", "pasolini-bbs": "BBS", "emulador-msx": "MSX", "agente-digital-pessoal": "Agente Digitale", "blog-contato": "Blog", "x": "X", "instagram": "Instagram", "github": "GitHub"};
+  const languageButtons = document.querySelectorAll('[data-language-choice]');
+  const original = new Map();
+
+  function remember(selector, attribute) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach((element, index) => {
+      const key = `${selector}@@${attribute || 'html'}@@${index}`;
+      if (!original.has(key)) original.set(key, attribute ? element.getAttribute(attribute) : element.innerHTML);
+    });
+  }
+
+  Object.keys(italian).forEach((raw) => {
+    const at = raw.lastIndexOf('@');
+    const hasAttribute = at > 0;
+    const selector = hasAttribute ? raw.slice(0, at) : raw;
+    const attribute = hasAttribute ? raw.slice(at + 1) : null;
+    remember(selector, attribute);
+  });
+
+  document.querySelectorAll('.tag-interactive').forEach((element, index) => {
+    original.set(`tag@@${index}`, element.innerHTML);
+  });
+  document.querySelectorAll('.tag-popover').forEach((element) => {
+    original.set(`popover-title@@${element.id}`, element.querySelector('strong').innerHTML);
+    original.set(`popover-copy@@${element.id}`, element.querySelector('p').innerHTML);
+    original.set(`popover-label@@${element.id}`, element.getAttribute('aria-label'));
+  });
+
+  const graphLabelsPt = Object.fromEntries(graphNodes.map((node) => [node.id, node.label]));
+
+  function applyMappedContent(useItalian) {
+    Object.entries(italian).forEach(([raw, value]) => {
+      const at = raw.lastIndexOf('@');
+      const hasAttribute = at > 0;
+      const selector = hasAttribute ? raw.slice(0, at) : raw;
+      const attribute = hasAttribute ? raw.slice(at + 1) : null;
+      document.querySelectorAll(selector).forEach((element, index) => {
+        const key = `${selector}@@${attribute || 'html'}@@${index}`;
+        const next = useItalian ? value : original.get(key);
+        if (attribute) element.setAttribute(attribute, next);
+        else element.innerHTML = next;
+      });
+    });
+  }
+
+  function applyTags(useItalian) {
+    document.querySelectorAll('.tag-interactive').forEach((element, index) => {
+      if (!useItalian) {
+        element.innerHTML = original.get(`tag@@${index}`);
+        return;
+      }
+      const currentPt = original.get(`tag@@${index}`).replace(/<[^>]+>/g, '').trim();
+      element.textContent = buttonTranslations[currentPt] || currentPt;
+    });
+  }
+
+  function applyPopovers(useItalian) {
+    document.querySelectorAll('.tag-popover').forEach((element) => {
+      const translated = popoverTranslations[element.id];
+      const title = element.querySelector('strong');
+      const copy = element.querySelector('p');
+      if (useItalian && translated) {
+        title.innerHTML = translated[0];
+        copy.innerHTML = translated[1];
+        element.setAttribute('aria-label', `Informazioni su ${translated[0]}`);
+      } else {
+        title.innerHTML = original.get(`popover-title@@${element.id}`);
+        copy.innerHTML = original.get(`popover-copy@@${element.id}`);
+        element.setAttribute('aria-label', original.get(`popover-label@@${element.id}`));
+      }
+    });
+  }
+
+  function applyGraphLanguage(useItalian) {
+    graphNodes.forEach((node) => {
+      node.label = useItalian ? (graphLabelsIt[node.id] || graphLabelsPt[node.id]) : graphLabelsPt[node.id];
+      const group = document.querySelector(`.graph-node[data-node-id="${node.id}"]`);
+      if (!group) return;
+      const text = group.querySelector('text');
+      if (text) text.textContent = node.label;
+      group.setAttribute('aria-label', node.external
+        ? (useItalian ? `${node.label}, si apre in una nuova scheda` : `${node.label}, abre em nova aba`)
+        : (useItalian ? `Vai a ${node.label}` : `Ir para ${node.label}`));
+    });
+    detectCurrentSection();
+  }
+
+  function applyLanguage(language) {
+    const useItalian = language === 'it';
+    document.documentElement.lang = useItalian ? 'it' : 'pt-BR';
+    document.body.dataset.language = language;
+    localStorage.setItem('junior-site-language', language);
+    applyMappedContent(useItalian);
+    applyTags(useItalian);
+    applyPopovers(useItalian);
+    applyGraphLanguage(useItalian);
+    languageButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.languageChoice === language)));
+  }
+
+  languageButtons.forEach((button) => {
+    button.addEventListener('click', () => applyLanguage(button.dataset.languageChoice));
+  });
+
+  const savedLanguage = localStorage.getItem('junior-site-language');
+  applyLanguage(savedLanguage === 'it' ? 'it' : 'pt-BR');
+})();
+</script>
+</body>
+</html>
