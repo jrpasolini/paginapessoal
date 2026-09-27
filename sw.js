@@ -1,5 +1,5 @@
 const CACHE = "pasolini-site-v2";
-const PRECACHE = ["./","favicon.svg","perfil-junior.webp","perfil-junior.jpg"];
+const PRECACHE = ["/paginapessoal/", "/paginapessoal/favicon.svg", "/paginapessoal/perfil-junior.webp", "/paginapessoal/perfil-junior.jpg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
