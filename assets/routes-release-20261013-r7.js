@@ -42,8 +42,13 @@ import{a as e,i as t,n,o as r,r as i,t as a}from"./index-release-20261013-r7.js"
  const [chosen,setChosen]=g.useState(null),[search,setSearch]=g.useState(""),[filter,setFilter]=g.useState("all");
  const lang=document.documentElement.lang,copy=kgUI[lang]||kgUI["pt-BR"];
  const nodes=kgNodes,links=kgPairs,byId=Object.fromEntries(nodes.map(x=>[x.id,x]));
- const q=search.trim().toLocaleLowerCase(),candidates=nodes.filter(x=>(filter==="all"||x.kind===filter)&&(!q||(`${x.label} ${x.description}`).toLocaleLowerCase().includes(q)));
- const matching=new Set(candidates.map(x=>x.id));
+ const q=search.trim().toLocaleLowerCase();
+ const seeds=nodes.filter(x=>(filter==="all"||x.kind===filter)&&(!q||(`${x.label} ${x.description}`).toLocaleLowerCase().includes(q)));
+ const seedIds=new Set(seeds.map(x=>x.id));
+ if(chosen)seedIds.add(chosen);
+ const matching=new Set(seedIds);
+ if(filter!=="all"||q){for(const [a,b] of links){if(seedIds.has(a)||seedIds.has(b)){matching.add(a);matching.add(b)}}}
+ const candidates=nodes.filter(x=>matching.has(x.id));
  const edges=links.filter(([a,b])=>matching.has(a)&&matching.has(b));
  const related=chosen?links.filter(([a,b])=>a===chosen||b===chosen).map(([a,b])=>a===chosen?b:a):[];
  const focus=new Set(chosen?[chosen,...related]:matching);
