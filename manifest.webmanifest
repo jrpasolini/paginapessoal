@@ -1,24 +1,25 @@
 {
   "name": "Antonio Pasolini Junior",
   "short_name": "Pasolini",
-  "id": "/paginapessoal/",
-  "start_url": "/paginapessoal/",
-  "scope": "/paginapessoal/",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#090909",
   "theme_color": "#090909",
   "icons": [
     {
-      "src": "/paginapessoal/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/paginapessoal/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "icon-512.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any"
     }
-  ]
+  ],
+  "description": "Portfólio pessoal de tecnologia, projetos, artigos e conhecimento de Antonio Pasolini Junior."
 }
