@@ -29,7 +29,10 @@ Transformar jrpasolini.tech em um índice autoral de projetos, pesquisas, experi
 6. Biblioteca ordenada por data, com filtros **Todos / X / DEV.to** e indicação da origem em cada cartão; popups originais do X e ação "Responder" foram preservados.
 7. Caderno de engenharia resumido e excesso de medições históricas retirado da apresentação inicial.
 8. Caminhos estáticos, fontes, roteador, PWA e service worker ajustados para a raiz do domínio personalizado. Nome do cache atualizado.
-9. A `main` e o DNS não foram alterados.
+9. Indicadores restaurados com escopo explícito: **10+ anos no serviço público**, **12+ iniciativas apresentadas** e **03 plataformas de publicação** (X, DEV.to e WordPress). A contagem de iniciativas é inclusiva: projetos autorais, protótipos e experimentos, não apenas softwares próprios publicados.
+10. Experimentos com agentes atualizados para citar **OpenClaw, Hermes Agent, Agent Zero e Cline CLI** como ferramentas de terceiros. A contribuição autoral está em regras, integrações, automações, testes e experimentos de memória.
+11. Registro no Caderno de Engenharia de **Raquel / Cline CLI**, baseado no esboço interno de 18/10/2026: HOT/WARM/SUPER COLD e curadoria semanal implementadas; QMD episódico ainda planejado, nunca com promoção automática à HOT.
+12. A `main` e o DNS não foram alterados.
 
 ## Publicações: arquitetura de referência
 
