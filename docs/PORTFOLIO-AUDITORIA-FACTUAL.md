@@ -34,7 +34,7 @@ Nenhuma referência a realização, autoria, participação, prêmio, métrica o
 - Indicadores restaurados sob rótulos auditáveis: **10+ anos no serviço público**, **12+ iniciativas apresentadas** (categorias mistas de trabalhos/experimentos, sem alegar 12 produtos próprios) e **03 plataformas de publicação** (X, DEV.to e WordPress). A contagem de iniciativas foi afirmada pelo autor; conferir classificação e quantidade durante a revisão final.
 - Seção de agentes ampliada com **Agent Zero** e **Cline CLI**, sem lhes atribuir autoria ao usuário. Por decisão editorial do autor, os estudos não publicados associados ao Cline ficam fora do portfólio até a publicação dos respectivos artigos.
 - Uso dos títulos exatos, em inglês, dos três artigos publicados no DEV.to.
-- Substituição dos textos completos legados do X no bundle por resumos próprios curtos, preservando referências à fonte e links de resposta.
+- **Preservação do texto integral nos popups dos artigos do X**, com links para o original e opção de responder. A eventual substituição por prévias menores ficou adiada para revisão editorial posterior.
 - Classificação do BioFlow como demonstração sintética, sem alegações diagnósticas.
 - Modalidades de autoria de frameworks diferenciadas dos experimentos e integrações.
 
