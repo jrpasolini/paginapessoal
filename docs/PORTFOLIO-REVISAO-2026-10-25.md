@@ -36,7 +36,7 @@ Transformar jrpasolini.tech em um índice autoral de projetos, pesquisas, experi
 
 ## Publicações: arquitetura de referência
 
-O objetivo futuro é manter apenas metadados leves no repositório: id, título, data, resumo, plataforma, URL canônica, temas e relações com outros conteúdos. A leitura e a participação acontecem no X ou DEV.to. A implementação atual ainda inclui texto integral legado de alguns artigos do X no bundle antigo; sua remoção e a extração do catálogo para uma fonte de dados própria são tarefas pendentes.
+O objetivo futuro é manter apenas metadados leves no repositório: id, título, data, resumo, plataforma, URL canônica, temas e relações com outros conteúdos. A leitura e a participação acontecem no X ou DEV.to. Os artigos do X continuam com o texto integral no popup, por decisão de preservar a experiência atual até uma avaliação conjunta. A extração de um catálogo leve e eventual mudança de incorporação são tarefas futuras.
 
 ## Próxima etapa: grafo
 
