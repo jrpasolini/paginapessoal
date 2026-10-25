@@ -32,7 +32,7 @@ Nenhuma referência a realização, autoria, participação, prêmio, métrica o
 
 - Remoção de "OpenClaw 2.0" e dos detalhes de hospedagem desnecessários do texto de apresentação.
 - Indicadores restaurados sob rótulos auditáveis: **10+ anos no serviço público**, **12+ iniciativas apresentadas** (categorias mistas de trabalhos/experimentos, sem alegar 12 produtos próprios) e **03 plataformas de publicação** (X, DEV.to e WordPress). A contagem de iniciativas foi afirmada pelo autor; conferir classificação e quantidade durante a revisão final.
-- Seção de agentes ampliada com **Agent Zero** e **Cline CLI**, sem lhes atribuir autoria ao usuário. O estudo da Raquel foi recuperado do rascunho interno de 18/10/2026: memória HOT/WARM/SUPER COLD e curadoria semanal implementadas, QMD episódico ainda não implementado, promoção à HOT somente com autorização explícita.
+- Seção de agentes ampliada com **Agent Zero** e **Cline CLI**, sem lhes atribuir autoria ao usuário. Por decisão editorial do autor, os estudos não publicados associados ao Cline ficam fora do portfólio até a publicação dos respectivos artigos.
 - Uso dos títulos exatos, em inglês, dos três artigos publicados no DEV.to.
 - Substituição dos textos completos legados do X no bundle por resumos próprios curtos, preservando referências à fonte e links de resposta.
 - Classificação do BioFlow como demonstração sintética, sem alegações diagnósticas.
