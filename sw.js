@@ -1,4 +1,4 @@
-const CACHE="pasolini-root-release-20261025-r10";
+const CACHE="pasolini-root-release-20261025-r11";
 const PRECACHE=["/favicon.svg","/icon-192.png","/icon-512.png","/perfil-junior.webp","/assets/index-release-20261013-r7.js","/assets/newsreader-latin-ext-wght-normal-C-3rgBeH.woff2","/assets/newsreader-latin-wght-normal-CCVVNp6i.woff2","/assets/newsreader-vietnamese-wght-normal-Czsa-EzN.woff2","/assets/routes-release-20261013-r7.js","/assets/source-sans-3-cyrillic-ext-wght-normal-DzyfIafT.woff2","/assets/source-sans-3-cyrillic-wght-normal-BMDVbyM7.woff2","/assets/source-sans-3-greek-ext-wght-normal-BWSLJLk6.woff2","/assets/source-sans-3-greek-wght-normal-C9H9m1vD.woff2","/assets/source-sans-3-latin-ext-wght-normal-C8iNium2.woff2","/assets/source-sans-3-latin-wght-normal-BqRLTx4X.woff2","/assets/source-sans-3-vietnamese-wght-normal-C1uRvKPU.woff2","/assets/styles-522dfb25de.css"];
 const CACHE_NAVIGATION=true;
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(PRECACHE)).then(()=>self.skipWaiting())));
