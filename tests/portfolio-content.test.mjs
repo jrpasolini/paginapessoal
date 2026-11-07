@@ -52,3 +52,16 @@ test('browser and PWA share the high-resolution celestial icon', () => {
   assert.match(sw, /"\/icon-512\.png"/);
   assert.doesNotMatch(sw, /"\/favicon\.svg"/);
 });
+
+test('social previews declare a publicly accessible Open Graph image', () => {
+  assert.match(html, /<html lang="pt-BR" prefix="og: https:\/\/ogp\.me\/ns#">/);
+  for (const tag of [
+    'property="og:type" content="website"',
+    'property="og:url" content="https://jrpasolini.tech/"',
+    'property="og:image" content="https://jrpasolini.tech/og.jpg"',
+    'property="og:image:width" content="1200"',
+    'property="og:image:height" content="630"',
+    'name="twitter:card" content="summary_large_image"',
+    'name="twitter:image" content="https://jrpasolini.tech/og.jpg"',
+  ]) assert.match(html, new RegExp(tag));
+});
