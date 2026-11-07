@@ -15,6 +15,7 @@ test('the professional positioning is consistent in HTML and hydrated content', 
     assert.match(source, /Desenvolvedor Full Stack/);
     assert.match(source, /18 anos/);
     assert.match(source, /Retro Ghost 85/);
+    assert.match(source, /credenciais verificáveis|verifiable credentials/);
   }
   assert.match(html, /class="scroll-note" href="#projetos"/);
   assert.match(bundle, /className:`scroll-note`,href:`#projetos`/);
